@@ -1,8 +1,11 @@
-let newPhrase = "Butelka wody";
-let phrase = document.getElementById("phrase");
+let newPhrase = "AB cd Ef gH"; //hasło
+newPhrase = newPhrase.toUpperCase(); //kapitaliki
+let phrase = document.getElementById("phrase"); //element z hasłem
 let dashedPhrase = "";
-let phraseLength = newPhrase.length;
+let phraseLength = newPhrase.length; //długość hasła
 
+
+//tablica liter
 let letters = new Array(35);
 
 letters[0] = "A"
@@ -42,26 +45,61 @@ letters[33] = "Ź"
 letters[34] = "Ż"
 
 
-
+//zamiana liter na kreski
 function loadPhrase(){
     phrase.innerHTML = dashedPhrase;
 }
 
 for(i=0; i<phraseLength; i++){
     if(newPhrase[i]==" ") dashedPhrase = dashedPhrase + " ";
-    else dashedPhrase = dashedPhrase + "-"
+    else dashedPhrase = dashedPhrase + "-";
 }
 
 function createLetters(){
     var divContent ="";
 
     for(i=0;i<=34; i++){
-        divContent = divContent + '<div class="letter">'+letters[i]+'</div>';
+        let element = "letter" + i;
+        divContent = divContent + '<div id="'+element+'" class="letter" onclick="check('+i+')">'+letters[i]+'</div>';
     }
 
     document.getElementById("letters").innerHTML = divContent;
 
     loadPhrase();
+}
+
+
+//zamiana kliknietych liter z kresek
+String.prototype.setChar = function(place, char){
+    if(place>this.length - 1) return this.toString();
+    else return this.substr(0, place) + char + this.substr(place+1);
+}
+
+//zgadywanie hasla
+function check(num){
+    let hit = false;
+
+    for(i=0;i<phraseLength;i++){
+        if(newPhrase[i]==letters[num]){
+            dashedPhrase = dashedPhrase.setChar(i, letters[num]);
+            hit = true;
+        }
+    }
+
+    if(hit==true){
+        let element = "letter" + num;
+
+        document.getElementById(element).style.color = "hsl(77, 92%, 60%)";
+        document.getElementById(element).style.borderColor = "hsl(77, 92%, 60%)";
+
+        loadPhrase();
+    }
+    else{
+        let element = "letter" + num;
+
+        document.getElementById(element).style.color = "hsl(2, 71%, 55%)";
+        document.getElementById(element).style.borderColor = "hsl(2, 71%, 55%)";
+    }
 }
 
 window.onload = createLetters;
