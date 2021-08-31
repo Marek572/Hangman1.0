@@ -3,6 +3,7 @@ newPhrase = newPhrase.toUpperCase(); //kapitaliki
 let phrase = document.getElementById("phrase"); //element z hasłem
 let dashedPhrase = "";
 let phraseLength = newPhrase.length; //długość hasła
+let missAmount = 0;
 
 
 //tablica liter
@@ -99,6 +100,11 @@ function check(num){
 
         document.getElementById(element).style.color = "hsl(2, 71%, 55%)";
         document.getElementById(element).style.borderColor = "hsl(2, 71%, 55%)";
+
+        //skucha
+        missAmount++;
+        let hangmanImg = "img/hangman"+missAmount+".png";
+        document.getElementById("hangman").innerHTML = '<img src="'+hangmanImg+'"alt="" />';
     }
 }
 
