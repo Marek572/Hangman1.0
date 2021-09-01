@@ -1,4 +1,4 @@
-let newPhrase = "AB cd Ef gH"; //hasło
+let newPhrase = "Zegarek"; //hasło
 newPhrase = newPhrase.toUpperCase(); //kapitaliki
 let phrase = document.getElementById("phrase"); //element z hasłem
 let dashedPhrase = "";
@@ -92,6 +92,7 @@ function check(num){
 
         document.getElementById(element).style.color = "hsl(77, 92%, 60%)";
         document.getElementById(element).style.borderColor = "hsl(77, 92%, 60%)";
+        document.getElementById(element).style.cursor = "default";
 
         loadPhrase();
     }
@@ -100,11 +101,25 @@ function check(num){
 
         document.getElementById(element).style.color = "hsl(2, 71%, 55%)";
         document.getElementById(element).style.borderColor = "hsl(2, 71%, 55%)";
+        document.getElementById(element).style.cursor = "default";
+        document.getElementById(element).setAttribute("onclick",";");
 
         //skucha
         missAmount++;
         let hangmanImg = "img/hangman"+missAmount+".png";
         document.getElementById("hangman").innerHTML = '<img src="'+hangmanImg+'"alt="" />';
+    }
+
+    //wygrana
+    if(newPhrase == dashedPhrase){
+        document.getElementById("letters").innerHTML = '<button id="reset" onclick="location.reload()">Jeszcze raz</button>'
+        alert("Brawo! Wygrałeś!\nHasło to: "+newPhrase);
+    }
+
+    //przegrana
+    if(missAmount>=5){
+        document.getElementById("letters").innerHTML = '<button id="reset" onclick="location.reload()">Jeszcze raz</button>'
+        alert("Przegrałeś\nHasło to: "+newPhrase);
     }
 }
 
