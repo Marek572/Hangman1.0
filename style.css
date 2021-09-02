@@ -39,10 +39,16 @@ main{
     width: 135px;
     height: 135px;
     font-size: 20px;
+    font-weight: bold;
     text-align: center;
     border: 1px solid hsl(196, 100%, 93%);
     /* border-radius: 50%; */
     cursor: pointer;
+}
+
+.category:hover{
+    background-color: hsl(162, 43%, 46%);
+    transition: 0.2s;
 }
 
 header#phrase{
@@ -95,12 +101,15 @@ header#phrase{
 
 .letter:hover{
     background-color: hsl(162, 43%, 46%);
+    transition: 0.2s;
 }
 
 #reset{
-    width: 180px;
+    width: 150px;
     height: 35px;
-    font-size: 18px;
+    color: hsl(174, 30%, 21%);
+    font-size: 15px;
+    font-weight: bold;
     cursor: pointer;
     border: none;
     border-radius: 20px;
@@ -110,4 +119,5 @@ header#phrase{
 #reset:hover{
     color: hsl(196, 100%, 93%);
     background-color: hsl(162, 43%, 46%);
+    transition: 0.2s;
 }
